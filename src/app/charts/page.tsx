@@ -1,7 +1,9 @@
 'use client';
 import Header from "sbt/distro/header/Header";
+import { BarChart } from '../components/BarChart';
 
-export default function Home() {
+export default function Charts() {
+
   return (
     <>
       <Header
@@ -12,14 +14,13 @@ export default function Home() {
           url: "#",
           title: "nothing"
         }}
-        // This Header component needs refactoring. The button needs to be client rendered for Next.
       />
       <main className="p-5">
-        <h1 className="text-3xl font-bold mb-2">D3JS Data visualistion demos</h1>
+        <h1 className="text-2xl font-bold mb-2">Charts</h1>
         <hr className="mb-2" />
-        <ul>
-          <li>• First chart...</li>
-        </ul>
+
+        <BarChart data={[1,2,3]}/>
+
       </main>
     </>
   );
