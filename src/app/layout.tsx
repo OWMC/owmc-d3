@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "sbt/distro/header/Header";
 
 
 export const metadata: Metadata = {
@@ -15,7 +16,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans">
+        <Header
+          onCreateAccount={() => {}}
+          onLogin={() => {}}
+          onLogout={() => {}}
+          navLinks={[
+            { title: 'Home', url: '/' },
+            { title: 'About', url: '/about/' },
+            { title: 'Charts', url: '/charts/' },
+          ]}
+        />
+        <main className="p-5">
           {children}
+        </main>
       </body>
     </html>
   );

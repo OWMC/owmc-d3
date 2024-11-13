@@ -1,3 +1,17 @@
+.bar {
+  fill: #141414;
+}
+
 .bar:hover {
-    fill: #a16207;
+  fill: #DF9E36;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bar {
+    fill: #BBBBBB;
   }
+  .bar:hover {
+    fill: #ebb155;
+  }  
+}
+
