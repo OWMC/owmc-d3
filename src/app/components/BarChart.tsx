@@ -1,11 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
+import styles from './BarChart.module.css'
 
 interface IProps {
     data?: number[];
 }
 
-/* Component */
+/* Component
+https://medium.com/@jeffbutsch/using-d3-in-react-with-hooks-4a6c61f1d102
+*/
 export const BarChart = (props: IProps) => {
     /* The useRef Hook creates a variable that "holds on" to a value across rendering
        passes. In this case it will hold our component's SVG DOM element. It's
@@ -17,30 +20,47 @@ export const BarChart = (props: IProps) => {
     useEffect(
         () => {
             if (props.data && d3Container.current) {
-                const svg = d3.select(d3Container.current);
+                const w = 500;
+                const h = 200;
+                const padding = 30;
+                const xScale = d3.scaleLinear()
+                    .domain([0, 9])
+                    .range([padding, w - padding]);
 
-                // Bind D3 data
-                const update = svg
-                    .append('g')
-                    .selectAll('text')
-                    .data(props.data);
+                const yScale = d3.scaleLinear()
+                    .domain([0, 50])
+                    .range([h - padding, padding]);
 
-                // Enter new D3 elements
-                update.enter()
-                    .append('text')
-                    .attr('x', (d, i) => i * 25)
-                    .attr('y', 40)
-                    .style('font-size', 24)
-                    .text((d: number) => d);
 
-                // Update existing D3 elements
-                update
-                    .attr('x', (d, i) => i * 40)
-                    .text((d: number) => d);
+                const svg = d3.select(d3Container.current)
+                    .attr("width", w)
+                    .attr("height", h);
+;            
+                svg.selectAll("rect")
+                    .data(props.data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", (d, i) => i * 49 + padding)
+                    .attr("y", (d) => h - d * 2.75 - padding)
+                    .attr("width", 48)
+                    .attr("height", (d) => d * 2.75 )
+                    .attr("fill", "#141414")
+                    .attr("class", styles.bar)
+                    .append("title")
+                    .text((d) => d + " bitcoins mined")
 
-                // Remove old D3 elements
-                update.exit()
-                    .remove();
+                const xAxis = d3.axisBottom(xScale);
+                const yAxis = d3.axisLeft(yScale);
+
+                svg.append("g")
+                    .attr("transform", "translate(0," + (h - padding) + ")")
+                    .call(xAxis);
+
+                svg.append("g")
+                    .attr("transform", "translate(" + padding + ", 0)")
+                    .call(yAxis);
+
+
             }
         },
 
@@ -56,8 +76,6 @@ export const BarChart = (props: IProps) => {
     return (
         <svg
             className="d3-component"
-            width={400}
-            height={200}
             ref={d3Container}
         />
     );
