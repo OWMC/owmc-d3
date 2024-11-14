@@ -25,28 +25,29 @@ export const BarChart = (props: IProps) => {
                 const w = 500;
                 const h = 200;
                 const padding = 30;
+
                 const xScale = d3.scaleLinear()
                     .domain([0, 9])
                     .range([padding, w - padding]);
 
-                const scaleFactor = (h - padding * 2) / 50;
-
                 const yScale = d3.scaleLinear()
-                    .domain([0, 50])
+                    .domain([0, 40])
                     .range([h - padding, padding]);
+
+                const yScaleFactor = (h - padding * 2) / 40;
 
                 const svg = d3.select(d3Container.current)
                     .attr("width", w)
                     .attr("height", h);
-;            
+          
                 svg.selectAll("rect")
                     .data(props.data)
                     .enter()
                     .append("rect")
                     .attr("x", (d, i) => i * 49 + padding)
-                    .attr("y", (d) => h - d * scaleFactor - padding)
+                    .attr("y", (d) => h - d * yScaleFactor - padding)
                     .attr("width", 48)
-                    .attr("height", (d) => d * scaleFactor)
+                    .attr("height", (d) => d * yScaleFactor)
                     .attr("fill", "#141414")
                     .attr("class", styles.bar)
                     .append("title")
@@ -62,8 +63,6 @@ export const BarChart = (props: IProps) => {
                 svg.append("g")
                     .attr("transform", "translate(" + padding + ", 0)")
                     .call(yAxis);
-
-
             }
         },
 
