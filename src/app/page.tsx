@@ -10,7 +10,7 @@ export default function Home() {
       <p className="mb-4">
         Demo NextJS for D3js. Typscript, TailwindCSS and Hintertux.
       </p>
-      <Button size='small' label='Charts' href='/charts/' />
+      <Button size='small' label='View Charts' href='/charts/' />
     </>
   );
 }
