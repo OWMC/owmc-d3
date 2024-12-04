@@ -1,7 +1,6 @@
 "use client"
 import BarChart from '../components/BarChart';
-import React, {useState, useEffect} from 'react';
-import Button from 'sbt/distro/button/Button';
+import React, {useState} from 'react';
 import styles from './ChartsPage.module.css';
 
 export default function Charts() {
@@ -14,7 +13,8 @@ export default function Charts() {
     setInputValue(event.target.value);
   };
   
-  const handleClick = (event: React.FormEvent<HTMLFormElement>) => {
+  // @ts-nocheck
+  const handleClick = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     console.log('Button clicked with input value:', inputValue);
     const numbers = inputValue.split(',').map(Number);
@@ -26,6 +26,9 @@ export default function Charts() {
     }
   };
 
+
+  
+
   return (
     <>
       <h1 className="text-3xl font-bold mb-2">Charts</h1>
@@ -36,7 +39,8 @@ export default function Charts() {
       <input type="text" value={inputValue} onChange={handleChange} className={styles.arrayInput} />
       {error && <div style={{ color: 'red' }}>{error}</div>}
       <br />
-      <Button onClick={handleClick} label='Save and do something' size='small' />
+      {/* Use Button from Hintertux with onclick once it is working */}
+      <button onClick={handleClick} className={styles.arrayInput}>Save and do something</button>
       <BarChart data={data} />
     </>
   );
