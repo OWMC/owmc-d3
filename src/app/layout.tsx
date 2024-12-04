@@ -25,7 +25,7 @@ export default function RootLayout({
   };
   return (
     <html lang="en">
-      <body className="font-sans">
+      <body>
         <Header navLinks={navLinks} logoLink={logoLink} />
         <main className="p-5">
           {children}
