@@ -26,49 +26,52 @@ export default function BarChart({data}: BarChartProps) {
     const yScaleFactor = (h - padding * 2) / 40;
 
     useEffect(() => {
-            const svg = d3.select('.d3-component')
-                .attr("width", w)
-                .attr("height", h);
+        const svg = d3.select('.d3-component')
+            .attr("width", w)
+            .attr("height", h);
 
             svg.selectAll("rect")
-                .data(data)
-                .join(
-                    enter => enter.append("rect")
-                        .attr("x", (d, i) => i * 73.5 + padding)
-                        .attr("y", (d) => h - d * yScaleFactor - padding)
-                        .attr("width", 72.5)
-                        .attr("height", (d) => d * yScaleFactor)
-                        .attr("fill", "#141414")
-                        .attr("class", styles.bar)
-                        .append("title")
-                        .text((d) => d + " bitcoins mined"),
-                    update => update
-                        .attr("x", (d, i) => i * 73.5 + padding)
-                        .attr("y", (d) => h - d * yScaleFactor - padding)
-                        .attr("width", 72.5)
-                        .attr("height", (d) => d * yScaleFactor),
-                    exit => exit.remove()
-                );
+            .data(data)
+            .join(
+                enter => enter.append("rect")
+                    .attr("x", (d, i) => i * 73.5 + padding)
+                    .attr("y", (d) => h - d * yScaleFactor - padding)
+                    .attr("width", 72.5)
+                    .attr("height", (d) => d * yScaleFactor)
+                    .attr("fill", "#141414")
+                    .attr("class", styles.bar)
+                    .append("title")
+                    .text((d) => d + " bitcoins mined"),
+                update => update
+                    .attr("x", (d, i) => i * 73.5 + padding)
+                    .attr("y", (d) => h - d * yScaleFactor - padding)
+                    .attr("width", 72.5)
+                    .attr("height", (d) => d * yScaleFactor)
+                    .select("title")
+                    .text((d) => d + " bitcoins mined")
+            )
+            .exit()
+            .remove();
+        
+        const xAxis = d3.axisBottom(xScale).ticks([6]);;
+        const yAxis = d3.axisLeft(yScale);
 
-            const xAxis = d3.axisBottom(xScale);
-            const yAxis = d3.axisLeft(yScale);
+        svg.select("g.x-axis")
+            .remove();
 
-            svg.select("g.x-axis")
-                .remove();
+        svg.append("g")
+            .attr("transform", "translate(0," + (h - padding) + ")")
+            .call(xAxis)
+            .attr("class", "x-axis");
 
-            svg.append("g")
-                .attr("transform", "translate(0," + (h - padding) + ")")
-                .call(xAxis)
-                .attr("class", "x-axis");
+        svg.select("g.y-axis")
+            .remove();
 
-            svg.select("g.y-axis")
-                .remove();
-
-            svg.append("g")
-                .attr("transform", "translate(" + padding + ", 0)")
-                .call(yAxis)
-                .attr("class", "y-axis");
-        }, [data]);
+        svg.append("g")
+            .attr("transform", "translate(" + padding + ", 0)")
+            .call(yAxis)
+            .attr("class", "y-axis");
+    }, [data]);
 
     return (
         <svg

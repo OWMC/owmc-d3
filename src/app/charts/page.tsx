@@ -16,7 +16,7 @@ export default function Charts() {
   const handleClick = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     const numbers = inputValue.split(',').map(Number);
-    if (numbers.every((num) => Number.isInteger(num) && num >= 0 && num <= 40)) {
+    if (numbers.length === 6 && numbers.every((num) => Number.isInteger(num) && num >= 0 && num <= 40)) {
       setData(numbers);
       setError(null); 
     } else {
@@ -28,8 +28,8 @@ export default function Charts() {
     <>
       <h1 className="text-3xl font-bold mb-2">Charts</h1>
       <hr className="mb-8" />
-      <div className={styles.grid}>
-        <div className={styles.tile}>
+      <div className="grid lg:grid-cols-2 gap-4">
+        <div className="shadow-[#ccc] dark:shadow-[#404040] shadow-md p-4 bg-white dark:bg-black rounded-sm">
           <h2 className="text-2xl font-bold mb-2">Simple bar chart component</h2>
           <hr className="mb-2" />
           <p>Edit these 6 comma-separated numbers between 0 and 40 and click Save to view changes in the chart display.</p>
