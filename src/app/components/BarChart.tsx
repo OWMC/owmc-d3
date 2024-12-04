@@ -18,7 +18,7 @@ export default function BarChart({data}: BarChartProps) {
     const h = 200;
     const padding = 30;
     const xScale = d3.scaleLinear()
-        .domain([0, 9])
+        .domain([0, 6])
         .range([padding, w - padding]);
     const yScale = d3.scaleLinear()
         .domain([0, 40])
@@ -34,18 +34,18 @@ export default function BarChart({data}: BarChartProps) {
                 .data(data)
                 .join(
                     enter => enter.append("rect")
-                        .attr("x", (d, i) => i * 49 + padding)
+                        .attr("x", (d, i) => i * 73.5 + padding)
                         .attr("y", (d) => h - d * yScaleFactor - padding)
-                        .attr("width", 48)
+                        .attr("width", 72.5)
                         .attr("height", (d) => d * yScaleFactor)
                         .attr("fill", "#141414")
                         .attr("class", styles.bar)
                         .append("title")
                         .text((d) => d + " bitcoins mined"),
                     update => update
-                        .attr("x", (d, i) => i * 49 + padding)
+                        .attr("x", (d, i) => i * 73.5 + padding)
                         .attr("y", (d) => h - d * yScaleFactor - padding)
-                        .attr("width", 48)
+                        .attr("width", 72.5)
                         .attr("height", (d) => d * yScaleFactor),
                     exit => exit.remove()
                 );

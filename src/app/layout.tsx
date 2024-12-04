@@ -16,14 +16,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const navLinks =[
-    { title: 'Home', url: '/' },
     { title: 'About', url: '/about/' },
     { title: 'Charts', url: '/charts/' },
   ];
+  const logoLink = {
+    title: 'Home',
+    url: '/'
+  };
   return (
     <html lang="en">
       <body className="font-sans">
-        <Header navLinks={navLinks} />
+        <Header navLinks={navLinks} logoLink={logoLink} />
         <main className="p-5">
           {children}
         </main>
