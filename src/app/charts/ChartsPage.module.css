@@ -1,0 +1,16 @@
+
+.arrayInput {
+    width: 100%;
+    border: 1px solid black;
+    padding: 4px;
+    margin: 8px 0;
+    background-color: #ededed;
+}
+
+  @media (prefers-color-scheme: dark) {
+    .arrayInput {
+      background-color: #404040;
+      border: 1px solid #666;
+    }
+  }
+  

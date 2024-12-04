@@ -19,7 +19,7 @@ export default function About() {
       <p className="mb-2">Use client directive currently used on BarChart component, this is so we can allow the chart to update via user input (SSG not approriate, though maybe the initial render should be static? To be investigated).</p>
       <p className="mb-2">A separate bar chart can hopefully be made to allow for static generation.</p>
       <h3 className="mb-2 font-bold">Typescript</h3>
-      <p className="mb-2">Barchart component.</p>
+      <p className="mb-2">All components developed in the app use TypeScript.</p>
       <h3 className="mb-2 font-bold">TailwindCSS</h3>
       <p className="mb-2">Really just used for text formatting and margins at the moment.</p>
       <h3 className="mb-2 font-bold">Hintertux</h3>

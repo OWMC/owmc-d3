@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #141414;
     --foreground: #ededed;
   }
 }
@@ -27,6 +27,15 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.textLink {
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+.textLink:hover {
+  color: #DF9E36;
 }
 
 @media (prefers-color-scheme: dark) {
