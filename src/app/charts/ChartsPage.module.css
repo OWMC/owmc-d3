@@ -1,0 +1,38 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tile {
+  padding: 20px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tile {
+    border: 1px solid #666;
+  }
+  }
+
+.arrayInput {
+  width: 100%;
+  border: 1px solid black;
+  padding: 4px;
+  margin: 8px 0;
+  background-color: #ededed;
+}
+
+@media (prefers-color-scheme: dark) {
+  .arrayInput {
+    background-color: #404040;
+    border: 1px solid #666;
+  }
+}

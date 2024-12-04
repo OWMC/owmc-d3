@@ -1,5 +1,6 @@
 .bar {
   fill: #141414;
+  transition: 0.5s;
 }
 
 .bar:hover {
