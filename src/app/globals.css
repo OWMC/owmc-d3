@@ -42,3 +42,13 @@ a {
     color-scheme: dark;
   }
 }
+
+main {
+  padding-top: 72px !important;
+}
+
+@media screen and (min-width: 720px) {
+  main {
+    padding-top: 0 !important;
+  }
+}
